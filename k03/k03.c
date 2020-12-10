@@ -10,13 +10,70 @@ char StrKey[] = "wind";
 char* ForceSearch(char text[], char key[])
 {
     //  ここを実装する
+    int start, pos, find;
+    int text_len = strlen(text);
+    int key_len = strlen(key);
 
+    for(start=0; start<=(text_len-key_len); start++)
+    {
+        for(pos=0, find=0; pos<key_len; pos++)
+        {
+            if(text[start+pos]==key[pos])
+            {
+                find++;
+            }
+
+            if(find==key_len)
+            {
+                return text+start;
+            }
+        }
+    }
+    
+    return NULL;
 }
 
 char* BMSearch(char text[], char key[])
 {
     //  ここを実装する
+    int index, key_index;
+    int text_len = strlen(text);
+    int key_len = strlen(key);
+    int table[256];
+    int i;
 
+    for(i=0; i<256; i++)
+    {
+        table[i] = key_len;
+    }
+
+    for(i=0; i<key_len; i++)
+    {
+        table[(int)key[i]] = key_len-(1+i);
+    }
+
+    index = key_len-1;
+    while (index < text_len)
+    {
+        for(key_index=key_len-1; key_index>=0; key_index--, index--)
+        {
+            if(text[index]==key[key_index])
+            {
+                if(key_index==0)
+                {
+                    return text+index;
+                }
+            }
+            else
+            {
+                break;
+            }
+        }
+        
+        index = index + table[(int)text[index]];
+    }
+    
+    return NULL;
 }
 
 int main(void)
