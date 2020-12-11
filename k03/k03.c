@@ -41,6 +41,7 @@ char* BMSearch(char text[], char key[])
     int key_len = strlen(key);
     int table[256];
     int i;
+    int BF_index;
 
     for(i=0; i<256; i++)
     {
@@ -70,7 +71,13 @@ char* BMSearch(char text[], char key[])
             }
         }
         
+        BF_index = index;
         index = index + table[(int)text[index]];
+
+        if(index<=BF_index)
+        {
+            index = BF_index+1;
+        }
     }
     
     return NULL;
