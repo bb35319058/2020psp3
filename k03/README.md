@@ -57,4 +57,6 @@ BM Search. Find keyword at:wind in my hair.
 ```
 
 ## 修正履歴
+比較開始位置が戻ってしまう場合を考えて、BF_indexを作成しました。
 
+BF_indexをキーとの比較を開始した位置に直しました。
