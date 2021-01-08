@@ -83,7 +83,7 @@ void BubbleSort(City arrayCity[], int size)
     int pos;
     City tmp;
 
-    While(cnt != 0);{
+    while(cnt != 0){
         cnt = 0;
 
         for(pos=0; pos < size-1; pos++){
@@ -107,13 +107,13 @@ void QuickSort(City arrayCity[], int left, int right)
     City pivot;
     City tmp;
 
-    if((right - left) > 1){
+    if((right - left) >= 1){
         i = left;
         j = right;
         pivot = arrayCity[left];
 
         while(1){
-            while(i<=j){
+            while(i<=right){
                 if(arrayCity[i].seafood > pivot.seafood){
                     break;
                 }
@@ -121,8 +121,8 @@ void QuickSort(City arrayCity[], int left, int right)
             i++;
             }
 
-            while(j>=i){
-                if(arrayCity[i].seafood < pivot.seafood){
+            while(j>=left){
+                if(arrayCity[j].seafood <= pivot.seafood){
                     break;
                 }
 
