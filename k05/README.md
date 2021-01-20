@@ -97,13 +97,41 @@ int AdjacencyMatrix[MAX_STATIONS][MAX_STATIONS] = {
 - 幅優先探索のルート表示(10点)
 
 ## ソースコードの説明
+113~115 visitedを初期化。
+117 Stackを初期化。
+118 出発点のstartをPush。
+122~130 index番目がUNVISITEDならばVISITEDを代入する。
+126~128 その場所から行ける場所をスタックに入れる。
+133~137 すべてがVISITEDになったら出力する。
 
-
+207~209 visitedを初期化。
+211 キューを初期化。
+212 出発点のstartをキューにPush。
+216~224 index番目がUNVISITEDならばVISITEDを代入する。
+220~222 その場所から行ける場所をキューに入れる。
+228~230 すべてがVISITEDになったら出力する。
 
 ## 出力結果
 
 ```
-
+$ ./k05
+(DepthFirst)赤迫 is visited
+(DepthFirst)長崎大学前 is visited
+(DepthFirst)長崎駅前 is visited
+(DepthFirst)新地中華街 is visited
+(DepthFirst)石橋 is visited
+(DepthFirst)崇福寺 is visited
+(DepthFirst)市民会館 is visited
+(DepthFirst)蛍茶屋 is visited
+(BreadthFirst)赤迫 is visited
+(BreadthFirst)長崎大学前 is visited
+(BreadthFirst)長崎駅前 is visited
+(BreadthFirst)新地中華街 is visited
+(BreadthFirst)石橋 is visited
+(BreadthFirst)崇福寺 is visited
+(BreadthFirst)市民会館 is visited
+(BreadthFirst)蛍茶屋 is visited
+Time Required: 8
 ```
 
 ## 修正履歴
