@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -72,9 +73,47 @@ void DynamicProgLimited(Menu arrayItem[], int items, int nap_size)
     int history[items+1][nap_size + 1];     //  履歴を保存するテーブル(選択したメニューを探すときに使用)
 
     //　ここを実装する
+    int i, j, k;
 
+    for(i=0;i<(items)+1;i++){
+        for(j=0;j<(nap_size)+1;j++){
+            nap_value[i][j] = 0;
+        }
+    }
+    
+    for(i=1;i<=items;i++){
+        for(k=1;k<arrayItem[i-1].price;k++){
+            nap_value[i][k] = nap_value[i-1][k];
+            history[i][k] = k;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+        }
 
+        for(j=k+1;j<=nap_size;j++){
+            if(nap_value[i-1][j] > nap_value[i-1][j-arrayItem[i-1].price]+arrayItem[i-1].calorie){
+               nap_value[i][j] = nap_value[i-1][j]; 
+               history[i][j] = j;
+            }
+            else{
+               nap_value[i][j] = nap_value[i-1][j-arrayItem[i-1].price]+arrayItem[i-1].calorie;
+               history[i][j] = j - arrayItem[i-1].price;
+            }
+        }
+    }
+
+    int pre_j;
+    int cur_j = nap_size;
+
+    for(i=items;i>0;i--){
+        pre_j = history[i][cur_j];
+        if(pre_j != cur_j){
+            printf("%s\n", arrayItem[i].name);
+        }
+        cur_j = pre_j;
+    }
+
+    printf("最大カロリ－ = %d\n", nap_value[items][(nap_size)-1]);
+    return;
 }
+
 
 
 int main(void)
