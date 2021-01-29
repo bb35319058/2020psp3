@@ -102,10 +102,10 @@ void DynamicProgLimited(Menu arrayItem[], int items, int nap_size)
     int pre_j;
     int cur_j = nap_size;
 
-    for(i=(items)+1;i>0;i--){
+    for(i=items;i>0;i--){
         pre_j = history[i][cur_j];
         if(pre_j != cur_j){
-            printf("%s\n", arrayItem[i].name);
+            printf("%s\n", arrayItem[i-1].name);
         }
         cur_j = pre_j;
     }
